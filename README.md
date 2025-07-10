@@ -3,12 +3,13 @@ This is an application creation to go along with another web app myself and 2 ot
 
 This app is being created with the express purpose of educating myself on WinUI and C# app/software development.
 
-## Features
+# Features
 
 ### Frontend
 - [X] Home page
 - [X] Login page
 	- [ ] Forgot my password page or box
+	- [ ] (?) Log in with webpage instead of app
 - [X] Register page
 - [ ] File view page
 	- [ ] Search bar
@@ -20,6 +21,7 @@ This app is being created with the express purpose of educating myself on WinUI 
 - [ ] Login
 	- [ ] Authentication
 	- [ ] Encryption
+	- [ ] (?) Log in with webpage instead of app
 - [ ] Logout
 - [ ] Register Account
 - [ ] Delete Account
@@ -34,3 +36,5 @@ This app is being created with the express purpose of educating myself on WinUI 
 - [ ] Display Files
 - [ ] Search For File
 - [ ] Rename File
+- [ ] Go straight to File View with token
+- [ ] Tokens for Authentication and Sesions
