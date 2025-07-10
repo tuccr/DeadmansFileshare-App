@@ -1,8 +1,6 @@
 # DeadmansFileshare App
 This is an application creation to go along with another web app myself and 2 others created: [Deadman's Fileshare](http://deadmansfileshare.xyz)
 
-This app is being created with the express purpose of educating myself on WinUI and C# app/software development.
-
 # Features
 
 ### Frontend
