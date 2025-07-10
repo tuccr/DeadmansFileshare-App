@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "DeadmansFileshareAppCSharp (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "DeadmansFileshareAppCSharp (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

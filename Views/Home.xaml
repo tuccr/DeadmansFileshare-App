@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="DeadmansFileshareAppCSharp.Views.Home"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DeadmansFileshareAppCSharp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid RowSpacing="4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--
+        <TextBlock x:Name="Title"
+                   Text="Welcome to Deadman's Fileshare"
+                   Width="800"
+                   Grid.Row="1" Grid.Column="1"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   FontFamily="Papyrus"
+                   FontStyle="Normal"
+                   FontWeight="Bold"
+                   VerticalAlignment="Center"
+                   FontSize="32pt"/>
+        -->
+
+        <Image Source="/Assets/logo.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Height="200"
+               Width="800"
+               Grid.Row="1"/>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Spacing="4"
+                    Grid.Row="2">
+            <Button Content="Login" Click="LoginButton_Click"/>
+            <Button Content="Create an account" Click="RegisterButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
