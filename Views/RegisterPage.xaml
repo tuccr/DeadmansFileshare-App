@@ -30,29 +30,39 @@
         ScrollViewer.VerticalScrollBarVisibility="Visible">
             <TextBox x:Name="FirstName"
                      Header="First Name"
+                     PlaceholderText="John"
                      Width="400"/>
             <TextBox x:Name="LastName"
                      Header="Last Name"
+                     PlaceholderText="Smith"
                      Width="400"/>
             <TextBox x:Name="EmailAddress"
                      Header="Email address"
+                     PlaceholderText="johnsmith@email.com"
                      Width="400"/>
             <TextBox x:Name="Username"
                      Header="Username"
+                     PlaceholderText="JohnnyS"
                      Width="400"/>
-            <TextBox x:Name="Password"
+            <PasswordBox x:Name="Password"
                      Header="Password"
+                     PlaceholderText="Password!@#123"
                      Width="400"/>
-            <TextBox x:Name="ConfirmPassword"
+            <PasswordBox x:Name="ConfirmPassword"
                      Header="Confirm Password"
+                     PlaceholderText="Password!@#123"
                      Width="400"/>
         </StackPanel>
 
 
-        <Button Content="Create Account" Click="RegisterButton_Click"
-            Grid.Row="2"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+        <Button Content="Create Account" 
+                Click="RegisterButton_Click"
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="DodgerBlue"
+                Foreground="White"
+                FontSize="16pt"/>
 
         <StackPanel Orientation="Horizontal"
         HorizontalAlignment="Center"

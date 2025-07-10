@@ -37,11 +37,14 @@
              Width="400"/>
         </StackPanel>
 
-        
-        <Button Content="Login" Click="TryLoginButton_Click" 
-                Grid.Row="2"
+        <Button Content="Login"
+                Background="DodgerBlue"
+                Foreground="White"
+                FontSize="16pt"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Click="TryLoginButton_Click"
+                Grid.Row="2"/>
         
         <StackPanel Orientation="Horizontal"
             HorizontalAlignment="Center"
