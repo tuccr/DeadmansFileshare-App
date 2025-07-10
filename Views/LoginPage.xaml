@@ -31,7 +31,7 @@
              Header="Username"
              PlaceholderText="Username..."
              Width="400"/>
-            <TextBox x:Name="Password"
+            <PasswordBox x:Name="Password"
              Header="Password"
              PlaceholderText="Password..."
              Width="400"/>
