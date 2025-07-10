@@ -30,7 +30,50 @@ namespace DeadmansFileshareAppCSharp.Views
 
         private void TryLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // perform login here
+            // Retrieve input from the Username and Password fields
+            string username = Username.Text;
+            string password = Password.Password; // Assuming Password is a PasswordBox
+
+            // Basic validation
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                // Show an error message if fields are empty
+                ContentDialog errorDialog = new ContentDialog
+                {
+                    Title = "Login Error",
+                    Content = "Please enter both username and password.",
+                    CloseButtonText = "OK"
+                };
+                _ = errorDialog.ShowAsync();
+                return;
+            }
+
+            // Placeholder for authentication logic
+            bool isAuthenticated = AuthenticateUser(username, password);
+
+            if (isAuthenticated)
+            {
+                // Navigate to the Home page upon successful login
+                Frame.Navigate(typeof(FileView));
+            }
+            else
+            {
+                // Show an error message if authentication fails
+                ContentDialog errorDialog = new ContentDialog
+                {
+                    Title = "Login Failed",
+                    Content = "Invalid username or password.",
+                    CloseButtonText = "OK"
+                };
+                _ = errorDialog.ShowAsync();
+            }
+        }
+
+        // Example authentication method (replace with actual logic)
+        private bool AuthenticateUser(string username, string password)
+        {
+            // Replace this with actual authentication logic (e.g., API call, database query)
+            return username == "Username" && password == "Password";
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
