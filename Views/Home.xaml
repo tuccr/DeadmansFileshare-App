@@ -8,40 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid RowSpacing="4">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <TextBlock Text="Login successful!" Margin="8,8,8,8"></TextBlock>
 
-        <!--
-        <TextBlock x:Name="Title"
-                   Text="Welcome to Deadman's Fileshare"
-                   Width="800"
-                   Grid.Row="1" Grid.Column="1"
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   FontFamily="Papyrus"
-                   FontStyle="Normal"
-                   FontWeight="Bold"
-                   VerticalAlignment="Center"
-                   FontSize="32pt"/>
-        -->
-
-        <Image Source="/Assets/logo.png"
-               HorizontalAlignment="Center"
-               VerticalAlignment="Center"
-               Height="200"
-               Width="800"
-               Grid.Row="1"/>
-
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Spacing="4"
-                    Grid.Row="2">
-            <Button Content="Login" Click="LoginButton_Click"/>
-            <Button Content="Create an account" Click="RegisterButton_Click"/>
-        </StackPanel>
+        <Button Content="Home" Click="LogoutButton_Click"/>
     </Grid>
 </Page>

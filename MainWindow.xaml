@@ -31,7 +31,7 @@
         <!-- App Content -->
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
             <Frame x:Name="rootFrame"
-                   SourcePageType="views:Home"/>
+                   SourcePageType="views:StartScreen"/>
         </ScrollViewer>
     </Grid>
 </Window>

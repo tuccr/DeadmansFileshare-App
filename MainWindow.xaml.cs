@@ -30,6 +30,8 @@ namespace DeadmansFileshareAppCSharp
             ExtendsContentIntoTitleBar = true;
 
             SetTitleBar(AppTitleBar);
+
+            // don't know if we check for session token in here, or somewhere else
         }
     }
 }

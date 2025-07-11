@@ -21,26 +21,21 @@ namespace DeadmansFileshareAppCSharp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class RegisterPage : Page
+    public sealed partial class StartScreen : Page
     {
-        public RegisterPage()
+        public StartScreen()
         {
             InitializeComponent();
-        }
-
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            // do registration
-        }
-
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(StartScreen));
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(LoginPage));
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RegisterPage));
         }
     }
 }
