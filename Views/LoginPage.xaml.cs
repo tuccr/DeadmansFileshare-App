@@ -54,7 +54,7 @@ namespace DeadmansFileshareAppCSharp.Views
             if (isAuthenticated)
             {
                 // Navigate to the Home page upon successful login
-                Frame.Navigate(typeof(FileView));
+                Frame.Navigate(typeof(Home));
             }
             else
             {
@@ -83,7 +83,17 @@ namespace DeadmansFileshareAppCSharp.Views
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(Home));
+            Frame.Navigate(typeof(StartScreen));
+        }
+
+        private void Password_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            // Check if the pressed key is Enter
+            if (e.Key == Windows.System.VirtualKey.Enter)
+            {
+                // Trigger the TryLoginButton_Click method
+                TryLoginButton_Click(sender, e);
+            }
         }
     }
 }

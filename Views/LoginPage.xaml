@@ -34,7 +34,8 @@
             <PasswordBox x:Name="Password"
              Header="Password"
              PlaceholderText="Password..."
-             Width="400"/>
+             Width="400"
+             KeyDown="Password_KeyDown"/>
         </StackPanel>
 
         <Button Content="Login"
