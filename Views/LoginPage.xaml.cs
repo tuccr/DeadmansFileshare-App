@@ -12,9 +12,14 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
+
 
 namespace DeadmansFileshareAppCSharp.Views
 {
@@ -28,7 +33,7 @@ namespace DeadmansFileshareAppCSharp.Views
             InitializeComponent();
         }
 
-        private void TryLoginButton_Click(object sender, RoutedEventArgs e)
+        private async void TryLoginButton_Click(object sender, RoutedEventArgs e)
         {
             // Retrieve input from the Username and Password fields
             string username = Username.Text;
@@ -49,7 +54,7 @@ namespace DeadmansFileshareAppCSharp.Views
             }
 
             // Placeholder for authentication logic
-            bool isAuthenticated = AuthenticateUser(username, password);
+            bool isAuthenticated = await AuthenticateUser(username, password);
 
             if (isAuthenticated)
             {
@@ -70,10 +75,32 @@ namespace DeadmansFileshareAppCSharp.Views
         }
 
         // Example authentication method (replace with actual logic)
-        private bool AuthenticateUser(string username, string password)
+        private Task<bool> AuthenticateUser(string username, string password)
         {
-            // Replace this with actual authentication logic (e.g., API call, database query)
-            return username == "Username" && password == "Password";
+            return LoginAsync(username, password);
+        }
+
+        private async Task<bool> LoginAsync(string username, string password)
+        {
+            using var client = new HttpClient();
+
+            //DotNetEnv.Env.Load();
+
+            string API_URI = AppConfig.API_URI;
+
+
+            var payload = new { username, password };
+            var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+
+            // Log the content of the JSON payload to the Visual Studio Output pane
+            System.Diagnostics.Debug.WriteLine($"JSON Payload: {JsonSerializer.Serialize(payload)}");
+            System.Diagnostics.Debug.WriteLine(API_URI);
+
+            var response = await client.PostAsync(API_URI + "/users/login", content);
+
+            System.Diagnostics.Debug.WriteLine($"Results are in....");
+
+            return response.IsSuccessStatusCode;
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
