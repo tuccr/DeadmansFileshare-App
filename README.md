@@ -4,20 +4,23 @@ This is an application creation to go along with another web app myself and 2 ot
 # Features
 
 ### Frontend
-- [X] Home page
+- [X] Starting page
 - [X] Login page
 	- [ ] Forgot my password page or box
 	- [ ] (?) Log in with webpage instead of app
 - [X] Register page
-- [ ] File view page
+- [ ] Home page
 	- [ ] Search bar
-- [ ] Upload page or box
-- [ ] Download dialog
+ 	- [ ] Display files
+	- [ ] Upload page or box
+	- [ ] Download dialog
+	- [ ] Link Sharing
 - [ ] Change password page or box or dialog
+- [ ] Delete Account button or dialog
 
 ### Backend
 - [ ] Login
-	- [ ] Authentication
+	- [X] Authentication
 	- [ ] Encryption
 	- [ ] (?) Log in with webpage instead of app
 - [ ] Logout
