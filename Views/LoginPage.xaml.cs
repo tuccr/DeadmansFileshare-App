@@ -16,6 +16,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Windows.Security.Credentials;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -95,7 +96,27 @@ namespace DeadmansFileshareAppCSharp.Views
 
             var response = await client.PostAsync(API_URI + "/users/login", content);
 
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+
+                using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+
+                string? token = doc.RootElement.GetProperty("token").GetString();
+
+                if (token != null)
+                {
+                    var vault = new PasswordVault();
+                    vault.Add(new PasswordCredential("DeadmansFileshareAppToken", "sessionToken", token));
+                }
+
             return response.IsSuccessStatusCode;
+        }
+            else
+            {
+                // could replace this if else and change function to just return the json and parse it inside the function (that way the proper error message can be displayed)
+                return false;
+            }
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
