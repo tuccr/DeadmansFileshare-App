@@ -84,10 +84,7 @@ namespace DeadmansFileshareAppCSharp.Views
         {
             using var client = new HttpClient();
 
-            //DotNetEnv.Env.Load();
-
             string API_URI = AppConfig.API_URI;
-
 
             var payload = new { username, password };
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
