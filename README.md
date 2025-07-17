@@ -6,6 +6,8 @@ This is an application creation to go along with another web app myself and 2 ot
 ### Frontend
 - [X] Starting page
 - [X] Login page
+	- [X] Base functionality
+	- [ ] Failed login dialog
 	- [ ] Forgot my password page or box
 	- [ ] (?) Log in with webpage instead of app
 - [X] Register page
