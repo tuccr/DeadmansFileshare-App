@@ -90,13 +90,10 @@ namespace DeadmansFileshareAppCSharp.Views
             var payload = new { username, password };
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
-            // Log the content of the JSON payload to the Visual Studio Output pane
             System.Diagnostics.Debug.WriteLine($"JSON Payload: {JsonSerializer.Serialize(payload)}");
             System.Diagnostics.Debug.WriteLine(API_URI);
 
             var response = await client.PostAsync(API_URI + "/users/login", content);
-
-            System.Diagnostics.Debug.WriteLine($"Results are in....");
 
             return response.IsSuccessStatusCode;
         }
