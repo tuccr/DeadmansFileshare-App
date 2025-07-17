@@ -12,30 +12,27 @@ This is an application creation to go along with another web app myself and 2 ot
 - [ ] Home page
 	- [ ] Search bar
  	- [ ] Display files
-	- [ ] Upload page or box
+	- [ ] Upload file box or page
 	- [ ] Download dialog
 	- [ ] Link Sharing
+ 	- [ ] Rename file button and dialog
 - [ ] Change password page or box or dialog
 - [ ] Delete Account button or dialog
 
 ### Backend
-- [ ] Login
+- [X] Login
 	- [X] Authentication
 	- [ ] Encryption
 	- [ ] (?) Log in with webpage instead of app
-- [ ] Logout
-- [ ] Register Account
-- [ ] Delete Account
-- [ ] Change Password
-- [ ] Forgot Password
-- [ ] Upload File
+- [ ] Forgot Password (currently broken)
+- [X] Upload File
+	- [X] Base functionality
 	- [ ] Encryption
-- [ ] Download File
+- [X] Download File
 	- [ ] Encryption
-	- [ ] Create Link
-	- [ ] Download with Link
-- [ ] Display Files
-- [ ] Search For File
-- [ ] Rename File
-- [ ] Go straight to File View with token
+	- [X] Download with Link
+- [X] Display Files
+- [X] Search For File
+- [X] Rename File
+- [ ] Go straight to Home with token
 - [ ] Tokens for Authentication and Sesions
