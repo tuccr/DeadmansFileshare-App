@@ -68,9 +68,10 @@ namespace DeadmansFileshareAppCSharp.Views
                 {
                     Title = "Login Failed",
                     Content = "Invalid username or password.",
-                    CloseButtonText = "OK"
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
                 };
-                _ = errorDialog.ShowAsync();
+                await errorDialog.ShowAsync();
             }
         }
 
