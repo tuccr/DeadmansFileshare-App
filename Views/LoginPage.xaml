@@ -31,11 +31,14 @@
              Header="Username"
              PlaceholderText="Username..."
              Width="400"/>
+            <TextBlock x:Name="UsernameIsNullError" Visibility="Collapsed" Foreground="Red" Text="Username is required"/>
+            
             <PasswordBox x:Name="Password"
              Header="Password"
              PlaceholderText="Password..."
              Width="400"
              KeyDown="Password_KeyDown"/>
+            <TextBlock x:Name="PasswordIsNullError" Visibility="Collapsed" Foreground="Red" Text="Pasword is required"/>
         </StackPanel>
 
         <Button Content="Login"

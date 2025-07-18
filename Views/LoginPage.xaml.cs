@@ -36,23 +36,28 @@ namespace DeadmansFileshareAppCSharp.Views
 
         private async void TryLoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // Retrieve input from the Username and Password fields
+            UsernameIsNullError.Visibility = Visibility.Collapsed;
+            PasswordIsNullError.Visibility = Visibility.Collapsed;
+
             string username = Username.Text;
-            string password = Password.Password; // Assuming Password is a PasswordBox
+            string password = Password.Password;
 
             // Basic validation
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(username))
             {
-                // Show an error message if fields are empty
-                ContentDialog errorDialog = new ContentDialog
-                {
-                    Title = "Login Error",
-                    Content = "Please enter both username and password.",
-                    CloseButtonText = "OK"
-                };
-                _ = errorDialog.ShowAsync();
-                return;
+                UsernameIsNullError.Visibility = Visibility.Visible;
+                isValid = false;
             }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                PasswordIsNullError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+
+            if (!isValid) return;
 
             // Placeholder for authentication logic
             bool isAuthenticated = await AuthenticateUser(username, password);
@@ -87,6 +92,8 @@ namespace DeadmansFileshareAppCSharp.Views
             using var client = new HttpClient();
 
             string API_URI = AppConfig.API_URI;
+            string CRED_NAME = AppConfig.CRED_NAME;
+            string TOKEN_NAME = AppConfig.TOKEN_NAME;
 
             var payload = new { username, password };
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
@@ -107,11 +114,11 @@ namespace DeadmansFileshareAppCSharp.Views
                 if (token != null)
                 {
                     var vault = new PasswordVault();
-                    vault.Add(new PasswordCredential("DeadmansFileshareAppToken", "sessionToken", token));
+                    vault.Add(new PasswordCredential(CRED_NAME, TOKEN_NAME, token));
                 }
 
-            return response.IsSuccessStatusCode;
-        }
+                return response.IsSuccessStatusCode;
+            }
             else
             {
                 // could replace this if else and change function to just return the json and parse it inside the function (that way the proper error message can be displayed)

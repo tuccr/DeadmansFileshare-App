@@ -32,26 +32,38 @@
                      Header="First Name"
                      PlaceholderText="John"
                      Width="400"/>
+            <TextBlock x:Name="FirstNameIsNullError" Foreground="Red" Visibility="Collapsed" Text="First name is required."/>
+            
             <TextBox x:Name="LastName"
                      Header="Last Name"
                      PlaceholderText="Smith"
                      Width="400"/>
+            <TextBlock x:Name="LastNameIsNullError" Foreground="Red" Visibility="Collapsed" Text="Last name is required."/>
+
             <TextBox x:Name="EmailAddress"
                      Header="Email address"
                      PlaceholderText="johnsmith@email.com"
                      Width="400"/>
+            <TextBlock x:Name="EmailAddressIsNullError" Foreground="Red" Visibility="Collapsed" Text="Email address is required."/>
+
             <TextBox x:Name="Username"
                      Header="Username"
                      PlaceholderText="JohnnyS"
                      Width="400"/>
+            <TextBlock x:Name="UsernameIsNullError" Foreground="Red" Visibility="Collapsed" Text="Username is required."/>
+
             <PasswordBox x:Name="Password"
                      Header="Password"
                      PlaceholderText="Password!@#123"
                      Width="400"/>
+            <TextBlock x:Name="PasswordIsNullError" Foreground="Red" Visibility="Collapsed" Text="Password is required."/>
+
             <PasswordBox x:Name="ConfirmPassword"
                      Header="Confirm Password"
                      PlaceholderText="Password!@#123"
                      Width="400"/>
+            <TextBlock x:Name="ConfirmPasswordFieldIsNullError" Foreground="Red" Visibility="Collapsed" Text="Confirm password field is required."/>
+
         </StackPanel>
 
 
