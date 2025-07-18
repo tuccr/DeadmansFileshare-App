@@ -11,6 +11,6 @@
     <Grid>
         <TextBlock Text="Login successful!" Margin="8,8,8,8"></TextBlock>
 
-        <Button Content="Home" Click="LogoutButton_Click"/>
+        <Button Content="Logout" Click="LogoutButton_Click"/>
     </Grid>
 </Page>
