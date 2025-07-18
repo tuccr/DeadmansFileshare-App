@@ -111,6 +111,56 @@ namespace DeadmansFileshareAppCSharp.Views
                 await errorDialog.ShowAsync();
                 return;
             }
+
+            var RegistrationResponse = await RegisterAsync(email, username, password);
+
+            string jsonResponse = await RegistrationResponse.Content.ReadAsStringAsync();
+            using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+
+            if(RegistrationResponse.IsSuccessStatusCode)
+            {
+                ContentDialog verifyEmail = new ContentDialog
+                {
+                    Title = "Registration Successful",
+                    Content = $"We've sent a verification email to {email}, please click the link to verify your account.",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+                await verifyEmail.ShowAsync();
+
+                // get the _id and username from the response and store that in our session
+
+                return;
+            }
+            else
+            {
+                string? error = doc.RootElement.GetProperty("error").GetString();
+                ContentDialog errorDialog = new ContentDialog
+                {
+                    Title = "Registration Failed",
+                    Content = $"Registration failed\nERROR: {error}",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.XamlRoot
+                };
+                await errorDialog.ShowAsync();
+                return;
+            }
+        }
+
+        private async Task<HttpResponseMessage> RegisterAsync(string email, string username, string password)
+        {
+            using var client = new HttpClient();
+
+            string API_URI = AppConfig.API_URI;
+
+            var payload = new { email, username, password };
+            var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
+
+            System.Diagnostics.Debug.WriteLine($"JSON Payload: {content}");
+
+            var response = await client.PostAsync(API_URI + "/users/addUser", content);
+
+            return response;
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

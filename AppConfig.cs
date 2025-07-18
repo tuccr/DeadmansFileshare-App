@@ -10,12 +10,16 @@ namespace DeadmansFileshareAppCSharp
 
         static AppConfig()
         {
+            string configPath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+
             Configuration = new ConfigurationBuilder()
-                .SetBasePath(AppContext.BaseDirectory)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile(configPath, optional: false, reloadOnChange: true)
                 .Build();
+
         }
 
         public static string API_URI => Configuration["API_URI"];
+        public static string CRED_NAME => Configuration["CRED_NAME"];
+        public static string TOKEN_NAME => Configuration["TOKEN_NAME"];
     }
 }
