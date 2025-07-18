@@ -16,12 +16,12 @@ namespace DeadmansFileshareAppCSharp.Services
 
         public bool IsValid => !string.IsNullOrEmpty(Token) && Expiration > DateTime.UtcNow;
 
-        public Session(string Token, string UserId, string UserName, DateTime Expiration)
+        public Session()
         {
-            this.Token = Token;
-            this.UserId = UserId;
-            this.UserName = UserName;
-            this.Expiration = Expiration;
+            this.Token = string.Empty;
+            this.UserId = string.Empty;
+            this.UserName = string.Empty;
+            this.Expiration = DateTime.UtcNow;
         }
     }
 }
