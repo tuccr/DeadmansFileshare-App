@@ -95,7 +95,6 @@ namespace DeadmansFileshareAppCSharp.Views
             // Load secret data
             string API_URI = AppConfig.API_URI;
             string CRED_NAME = AppConfig.CRED_NAME;
-            string TOKEN_NAME = AppConfig.TOKEN_NAME;
 
             // Create JSON payload to send to server
             var payload = new { username, password };
@@ -111,12 +110,14 @@ namespace DeadmansFileshareAppCSharp.Views
             // If our POST is successful, parse the respnse and save our received token
             if (response.IsSuccessStatusCode)
             {
+                // start reading json content
                 string jsonResponse = await response.Content.ReadAsStringAsync();
                 using JsonDocument doc = JsonDocument.Parse(jsonResponse);
 
                 string? token = doc.RootElement.GetProperty("token").GetString();
                 string? userName = doc.RootElement.GetProperty("username").GetString();
 
+                // if we don't have a token, something went wrong and we shouldn't be here
                 if (string.IsNullOrEmpty(token))
                 {
                     Console.WriteLine("TOKEN IS NULL");
