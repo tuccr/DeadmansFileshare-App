@@ -111,19 +111,19 @@ namespace DeadmansFileshareAppCSharp.Views
             // If our POST is successful, parse the respnse and add our received token to our credential vault
             if (response.IsSuccessStatusCode)
             {
-                string jsonResponse = await response.Content.ReadAsStringAsync();
+                //string jsonResponse = await response.Content.ReadAsStringAsync();
 
-                using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+                //using JsonDocument doc = JsonDocument.Parse(jsonResponse);
 
-                string? token = doc.RootElement.GetProperty("token").GetString();
+                //string? token = doc.RootElement.GetProperty("token").GetString();
 
-                if (token != null)
-                {
-                    var vault = new PasswordVault();
-                    vault.Add(new PasswordCredential(CRED_NAME, TOKEN_NAME, token));
-                }
+                //if (token != null)
+                //{
+                //    var vault = new PasswordVault();
+                //    vault.Add(new PasswordCredential(CRED_NAME, TOKEN_NAME, token));
+                //}
 
-                return response.IsSuccessStatusCode;
+                return true;
             }
             else
             {
