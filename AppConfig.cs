@@ -7,6 +7,7 @@ namespace DeadmansFileshareAppCSharp
     public static class AppConfig
     {
         public static IConfigurationRoot Configuration { get; }
+        public static string userName { get; set; }
 
         static AppConfig()
         {

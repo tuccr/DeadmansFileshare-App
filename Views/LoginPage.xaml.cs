@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Net.Http;
@@ -81,7 +82,6 @@ namespace DeadmansFileshareAppCSharp.Views
             }
         }
 
-        // Example authentication method (replace with actual logic)
         private Task<bool> AuthenticateUser(string username, string password)
         {
             return LoginAsync(username, password);
@@ -108,21 +108,29 @@ namespace DeadmansFileshareAppCSharp.Views
             // POST backend server
             var response = await client.PostAsync(API_URI + "/users/login", content);
 
-            // If our POST is successful, parse the respnse and add our received token to our credential vault
+            // If our POST is successful, parse the respnse and save our received token
             if (response.IsSuccessStatusCode)
             {
-                //string jsonResponse = await response.Content.ReadAsStringAsync();
+                string jsonResponse = await response.Content.ReadAsStringAsync();
+                using JsonDocument doc = JsonDocument.Parse(jsonResponse);
 
-                //using JsonDocument doc = JsonDocument.Parse(jsonResponse);
+                string? token = doc.RootElement.GetProperty("token").GetString();
+                string? userName = doc.RootElement.GetProperty("username").GetString();
 
-                //string? token = doc.RootElement.GetProperty("token").GetString();
-
-                //if (token != null)
-                //{
-                //    var vault = new PasswordVault();
-                //    vault.Add(new PasswordCredential(CRED_NAME, TOKEN_NAME, token));
-                //}
-
+                if (string.IsNullOrEmpty(token))
+                {
+                    Console.WriteLine("TOKEN IS NULL");
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(userName))
+                    {
+                        return false;
+                    }
+                    AppConfig.userName = userName;
+                    await StoreToken(token);
+                }
+                
                 return true;
             }
             else
@@ -130,6 +138,53 @@ namespace DeadmansFileshareAppCSharp.Views
                 // could replace this if else and change function to just return the json and parse it inside the function (that way the proper error message can be displayed)
                 return false;
             }
+        }
+
+        public static Task StoreToken(string token)
+        {
+            try
+            {
+                var vault = new PasswordVault();
+                vault.Add(new PasswordCredential(AppConfig.CRED_NAME, AppConfig.userName, token));
+                Console.WriteLine($"token stored: {token}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        public string? LoadToken(string userName)
+        {
+            try
+            {
+                var vault = new PasswordVault();
+                var cred = vault.Retrieve(AppConfig.CRED_NAME, userName);
+                cred.RetrievePassword();
+                return cred.Password;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static Task RemoveToken(string userName)
+        {
+            try
+            {
+                var vault = new PasswordVault();
+                var cred = vault.Retrieve(AppConfig.CRED_NAME, AppConfig.userName);
+
+                vault.Remove(cred);
+            }
+            catch
+            {
+                return Task.FromResult(false);
+            }
+            return Task.CompletedTask;
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
