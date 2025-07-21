@@ -89,20 +89,26 @@ namespace DeadmansFileshareAppCSharp.Views
 
         private async Task<bool> LoginAsync(string username, string password)
         {
+            // Make HTTP connection for sending requests
             using var client = new HttpClient();
 
+            // Load secret data
             string API_URI = AppConfig.API_URI;
             string CRED_NAME = AppConfig.CRED_NAME;
             string TOKEN_NAME = AppConfig.TOKEN_NAME;
 
+            // Create JSON payload to send to server
             var payload = new { username, password };
             var content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json");
 
+            // Debugging information (REMOVE LATER IF YOU SEE THIS AND REMEMBER)
             System.Diagnostics.Debug.WriteLine($"JSON Payload: {JsonSerializer.Serialize(payload)}");
             System.Diagnostics.Debug.WriteLine(API_URI);
 
+            // POST backend server
             var response = await client.PostAsync(API_URI + "/users/login", content);
 
+            // If our POST is successful, parse the respnse and add our received token to our credential vault
             if (response.IsSuccessStatusCode)
             {
                 string jsonResponse = await response.Content.ReadAsStringAsync();
