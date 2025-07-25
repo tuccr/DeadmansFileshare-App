@@ -147,7 +147,7 @@ namespace DeadmansFileshareAppCSharp.Views
             {
                 var vault = new PasswordVault();
                 vault.Add(new PasswordCredential(AppConfig.CRED_NAME, AppConfig.userName, token));
-                Console.WriteLine($"token stored: {token}");
+                System.Diagnostics.Debug.WriteLine($"Token added: {token}");
             }
             catch (Exception ex)
             {

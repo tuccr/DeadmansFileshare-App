@@ -67,8 +67,12 @@ namespace DeadmansFileshareAppCSharp.Models
 
                 System.Diagnostics.Debug.WriteLine(jsonResponse);
 
-
                 Files = new ObservableCollection<File>(fileList);
+
+                foreach(File file in Files)
+                {
+                    System.Diagnostics.Debug.WriteLine(file.original_filename);
+                }
 
                 Console.WriteLine(jsonResponse);
                 return true;
