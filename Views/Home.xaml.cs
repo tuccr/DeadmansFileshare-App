@@ -1,3 +1,4 @@
+using DeadmansFileshareAppCSharp.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -25,9 +26,11 @@ namespace DeadmansFileshareAppCSharp.Views;
 /// </summary>
 public sealed partial class Home : Page
 {
+    private FileView fileView = new FileView();
+
     public Home()
     {
-        InitializeComponent();
+        this.InitializeComponent();
     }
 
     private async void LogoutButton_Click(object sender, RoutedEventArgs e)

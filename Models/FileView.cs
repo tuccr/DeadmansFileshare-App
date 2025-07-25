@@ -61,14 +61,23 @@ namespace DeadmansFileshareAppCSharp.Models
             if(response.IsSuccessStatusCode)
             {
                 String jsonResponse = await response.Content.ReadAsStringAsync();
-                Files = JsonSerializer.Deserialize<ObservableCollection<File>>(jsonResponse);
+                List<File>? fileList = JsonSerializer.Deserialize<List<File>>(jsonResponse);
+
+                if (fileList == null || fileList.Count == 0) return false;
+
+                System.Diagnostics.Debug.WriteLine(jsonResponse);
+
+
+                Files = new ObservableCollection<File>(fileList);
+
                 Console.WriteLine(jsonResponse);
                 return true;
             }
 
             else
             {
-                Console.WriteLine($"Couldn't load files, sad");
+                System.Diagnostics.Debug.WriteLine("Couldn't read files...");
+
                 return false;
             }
         }

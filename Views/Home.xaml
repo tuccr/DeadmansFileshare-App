@@ -4,13 +4,56 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:DeadmansFileshareAppCSharp.Views"
+    xmlns:models="using:DeadmansFileshareAppCSharp.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid>
-        <TextBlock Text="Login successful!" Margin="8,8,8,8"></TextBlock>
+    <Page.Resources>
+        <DataTemplate x:Key="FileItemTemplate"
+                      x:DataType="models:File">
+            <ItemContainer>
+                <Grid Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                      BorderThickness="1"
+                      BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{x:Bind original_filename}" Margin="4"
+                               TextWrapping="Wrap"
+                               TextTrimming="WordEllipsis"/>
+                    <Border Grid.Row="1" Padding="4,6,0,6"
+                            Background="{ThemeResource ControlAltFillColorSecondaryBrush}">
+                        <TextBlock Text="{x:Bind time_of_death}"
+                                   Style="{StaticResource CaptionTextBlockStyle}"
+                                   Foreground="{ThemeResource AccentTextFillColorSecondaryBrush}"/>
+                    </Border>
+                </Grid>
+            </ItemContainer>
+        </DataTemplate>
+    </Page.Resources>
 
-        <Button Content="Logout" Click="LogoutButton_Click"/>
+    <Grid>
+        <CommandBar DefaultLabelPosition="Right">
+            <AppBarButton Icon="Back" Click="LogoutButton_Click"/>
+            <CommandBar.Content>
+                <TextBlock Text="Deadman's Fileshare App" Margin="12,8"
+                           Style="{ThemeResource SubtitleTextBlockStyle}"/>
+            </CommandBar.Content>
+        </CommandBar>
+
+        <ItemsView ItemsSource="{x:Bind fileView.Files}"
+                   Margin="24"
+                   ItemTemplate="{StaticResource FileItemTemplate}"
+                   SelectionMode="None"
+                   IsItemInvokedEnabled="False">
+            <ItemsView.Layout>
+                <UniformGridLayout MinItemHeight="50"
+                                   MinColumnSpacing="10"
+                                   MinRowSpacing="20"
+                                   ItemsJustification="Start"/>
+            </ItemsView.Layout>
+        </ItemsView>
     </Grid>
 </Page>
