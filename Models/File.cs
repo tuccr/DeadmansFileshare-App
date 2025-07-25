@@ -8,13 +8,13 @@ namespace DeadmansFileshareAppCSharp.Models
 {
     internal class File
     {
-        private string filename { get; set; } = string.Empty;
-        private DateTime expirationDate { get; set; } = DateTime.MinValue;
 
-        public File(string filename, DateTime expirationDate)
-        {
-            this.filename = filename;
-            this.expirationDate = expirationDate;
-        }
+        public String original_filename { get; set; } = String.Empty;
+        public DateTime time_of_death { get; set; } = DateTime.MinValue;
+        public String user_id { get; set; } = String.Empty;
+        public String? password {  get; set; } = null;
+        public String? allowed_users { get; set; } = null;
+        public int num_allowed_access { get; set; } = 1;
+        public String? file { get; set; } = String.Empty;
     }
 }
