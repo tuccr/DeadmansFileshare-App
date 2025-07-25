@@ -35,6 +35,12 @@
     </Page.Resources>
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <CommandBar DefaultLabelPosition="Right">
             <AppBarButton Icon="Back" Click="LogoutButton_Click"/>
             <CommandBar.Content>
@@ -44,7 +50,7 @@
         </CommandBar>
 
         <ItemsView ItemsSource="{x:Bind fileView.Files}"
-                   Margin="24"
+                   Grid.Row="1" Margin="24"
                    ItemTemplate="{StaticResource FileItemTemplate}"
                    SelectionMode="None"
                    IsItemInvokedEnabled="False">
