@@ -60,7 +60,7 @@ namespace DeadmansFileshareAppCSharp.Models
 
             if(response.IsSuccessStatusCode)
             {
-                String jsonResponse = await response.Content.ReadAsStringAsync();
+                String? jsonResponse = await response.Content.ReadAsStringAsync();
                 List<UserFile>? fileList = JsonSerializer.Deserialize<List<UserFile>>(jsonResponse);
 
                 if (fileList == null || fileList.Count == 0) return false;
