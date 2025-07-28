@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DeadmansFileshareAppCSharp.Models
 {
-    internal class File
+    internal class UserFile
     {
         public String? _id { get; set; }
         public String? original_filename { get; set; }

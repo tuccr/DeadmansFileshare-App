@@ -42,7 +42,7 @@
         </Grid.RowDefinitions>
 
         <CommandBar DefaultLabelPosition="Right">
-            <AppBarButton Icon="Back" Click="LogoutButton_Click"/>
+            <AppBarButton Icon="Back" Content="Logout" Click="LogoutButton_Click"/>
             <CommandBar.Content>
                 <TextBlock Text="Deadman's Fileshare App" Margin="12,8"
                            Style="{ThemeResource SubtitleTextBlockStyle}"/>

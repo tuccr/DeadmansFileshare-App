@@ -16,7 +16,7 @@ namespace DeadmansFileshareAppCSharp.Models
 {
     internal class FileView
     {
-        public ObservableCollection<File>? Files { get; set; }
+        public ObservableCollection<UserFile>? Files { get; set; }
 
         public FileView()
         {
@@ -61,15 +61,15 @@ namespace DeadmansFileshareAppCSharp.Models
             if(response.IsSuccessStatusCode)
             {
                 String jsonResponse = await response.Content.ReadAsStringAsync();
-                List<File>? fileList = JsonSerializer.Deserialize<List<File>>(jsonResponse);
+                List<UserFile>? fileList = JsonSerializer.Deserialize<List<UserFile>>(jsonResponse);
 
                 if (fileList == null || fileList.Count == 0) return false;
 
                 System.Diagnostics.Debug.WriteLine(jsonResponse);
 
-                Files = new ObservableCollection<File>(fileList);
+                Files = new ObservableCollection<UserFile>(fileList);
 
-                foreach(File file in Files)
+                foreach(UserFile file in Files)
                 {
                     System.Diagnostics.Debug.WriteLine(file.original_filename);
                 }
