@@ -11,7 +11,7 @@
 
     <Page.Resources>
         <DataTemplate x:Key="FileItemTemplate"
-                      x:DataType="models:File">
+                      x:DataType="models:UserFile">
             <ItemContainer>
                 <Grid Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                       BorderThickness="1"
